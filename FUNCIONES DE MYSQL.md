@@ -1,6 +1,6 @@
-#FUNCIONES DE MYSQL
+# FUNCIONES DE MYSQL
 
-##FUNCIONES NUMÉRICAS
+## FUNCIONES NUMÉRICAS
 
 - ABS: Devuelve el valor absoluto de un número.
 
@@ -28,7 +28,7 @@
 
 - SQRT: Devuelve la raíz cuadrada de un número.
 
-##FUNCIONES DE CADENAS
+## FUNCIONES DE CADENAS
 
 - ASCII: Devuelve el valor ASCII de un caracter.
 
