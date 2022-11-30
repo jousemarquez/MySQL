@@ -1,4 +1,5 @@
 #FUNCIONES DE MYSQL
+
 ##FUNCIONES NUMÉRICAS
 
 - ABS: Devuelve el valor absoluto de un número.
