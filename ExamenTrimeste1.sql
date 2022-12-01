@@ -6,7 +6,8 @@ FROM Categories;
 
 /*2. Por cada producto muestre el nombre de producto, longitud en caracteres del nombre de producto, precio unitario redondeado al entero inferior más cercano,
 número de unidades en stock y ganancia. La ganancia de cada producto se calcula utilizando el número de unidades del producto y el precio unitario redondeado de dicho producto.*/
-SELECT ProductName "Nombre de producto", length(ProductName) "Longitud en caracteres del nombre de producto", round(UnitPrice) "Precio redondeado", UnitsInStock "Unidades en stock", UnitsOnOrder*round(UnitPrice) "Ganancia"
+SELECT * FROM PRODUCTS;
+SELECT ProductName "Nombre de producto", length(ProductName) "Longitud en caracteres del nombre de producto", floor(UnitPrice) "Precio redondeado", UnitsInStock "Unidades en stock", UnitsOnOrder*round(UnitPrice) "Ganancia"
 FROM products;
 
 -- 3. Cuente la cantidad de productos que pertenecen a la categoría “Bebidas”.
