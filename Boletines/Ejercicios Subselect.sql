@@ -14,6 +14,7 @@ WHERE UnitsInStock * UnitPrice > (SELECT MAX(UnitsInStock * UnitPrice)
 									WHERE CategoryID = 4);
 
 -- 2. Nombre de los empleados que son jefes.
+select * from employees;
 SELECT CONCAT(Jefe.FirstName, ' ', Jefe.LastName) 'Jefes'
 FROM employees AS Jefe, employees AS Empleado
 WHERE Empleado.ReportsTo = Jefe.EmployeeID
@@ -178,18 +179,56 @@ WHERE (year(now())-year(birthdate)) < (SELECT (year(now())-year(birthdate)) 'eda
 
 -- 20: escribir una consulta para recuperar los paises que tiene mas proveedores que la suma
 -- de proveedores que tienen Brasil y España.
+SELECT Country
+FROM suppliers
+GROUP BY Country
+HAVING COUNT(*) >
+				(SELECT COUNT(*)
+                FROM suppliers
+                WHERE Country LIKE "Spain" OR Country LIKE "Brazil");
+
 
 -- 21: escribir una consulta para recuperar el nombre de la compañía e ID de proveedor
 -- de aquellos proveedores que viven en un país que tiene mas proveedores que la suma
 -- de proveedores que tienen Brasil y España.
 
+
+
 -- 22: ciudades que tienen más clientes que Madrid.
-select * from customers WHERE CITY="SEVILLA";
+SELECT City
+FROM Customers
+GROUP BY City
+HAVING count(*) >
+                (SELECT COUNT(*)
+                FROM Customers
+                WHERE City LIKE "Madrid");
 -- 23: ciudades que tienen más clientes que Madrid y Sevilla o Seville. Hacer con MAX.
 
+SELECT City
+FROM Customers
+GROUP BY City
+HAVING MAX(count(*)) >
+                (SELECT COUNT(*)
+                FROM Customers
+                WHERE City LIKE "Madrid" OR "Sevilla");
+
 -- 24: ciudades que tienen más clientes que Madrid o Sevilla o Seville. Hacer con SUMA.
+SELECT City
+FROM Customers
+GROUP BY City
+HAVING SUM(count(*)) >
+                (SELECT COUNT(*)
+                FROM Customers
+                WHERE City LIKE "Madrid" OR "Sevilla");
 
 -- 25: ciudades que tienen más clientes que la suma de clientes de Madrid, Sevilla o Seville y Lisboa.
+SELECT City
+FROM Customers
+GROUP BY City
+HAVING SUM(count(*)) >
+                (SELECT COUNT(*)
+                FROM Customers
+                WHERE City IN (Madrid AND Sevilla OR Sevilla AND Lisboa));
 
 -- 26: Escribir una consulta para imprimir el nombre, apellidos y edad de aquellos empleados
 -- que tienen una edad igual o superior a la edad media.
