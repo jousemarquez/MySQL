@@ -101,7 +101,7 @@ WHERE (year(now())-year(birthdate)) > (SELECT (year(now())-year(birthdate)) 'eda
                                        WHERE FirstName = 'Margaret' AND LastName = 'Peacock');
 
 -- 10. Escribir una consulta para recuperar el ID de pedido, ID de cliente y nombre de compañía. Trabaje sin hacer joins entre orders y customers.
-SELECT OrderID
+SELECT OrderID, CustomerID, CompanyName
 FROM Orders
 WHERE CustomerID IN (SELECT CustomerID, CompanyName
 					FROM Customers);
@@ -195,13 +195,19 @@ HAVING COUNT(*) >
 
 
 -- 22: ciudades que tienen más clientes que Madrid.
-SELECT City
-FROM Customers
+
+SELECT 
+    City
+FROM
+    Customers
 GROUP BY City
-HAVING count(*) >
-                (SELECT COUNT(*)
-                FROM Customers
-                WHERE City LIKE "Madrid");
+HAVING COUNT(*) > (SELECT 
+        COUNT(*)
+    FROM
+        Customers
+    WHERE
+        City = 'Madrid');
+        
 -- 23: ciudades que tienen más clientes que Madrid y Sevilla o Seville. Hacer con MAX.
 
 SELECT City
@@ -222,25 +228,88 @@ HAVING SUM(count(*)) >
                 WHERE City LIKE "Madrid" OR "Sevilla");
 
 -- 25: ciudades que tienen más clientes que la suma de clientes de Madrid, Sevilla o Seville y Lisboa.
-SELECT City
-FROM Customers
+SELECT 
+    City
+FROM
+    Customers
 GROUP BY City
-HAVING SUM(count(*)) >
-                (SELECT COUNT(*)
-                FROM Customers
-                WHERE City IN (Madrid AND Sevilla OR Sevilla AND Lisboa));
+HAVING SUM(COUNT(*)) > (SELECT 
+        COUNT(*)
+    FROM
+        Customers
+    WHERE
+        City IN (Madrid AND Sevilla OR Sevilla AND Lisboa));
 
 -- 26: Escribir una consulta para imprimir el nombre, apellidos y edad de aquellos empleados
--- que tienen una edad igual o superior a la edad media.
+-- que tienen una edad igual o superior a la edad media empleados.
+
+SELECT 
+    CONCAT_WS(' ', FirstName, LastName) AS Empleado,
+    SUBSTRING(DATEDIFF(CURDATE(), BirthDate) / 365,
+        1,
+        2) AS Edad
+FROM
+    Employees
+WHERE
+    ROUND(SUBSTRING(DATEDIFF(CURDATE(), BirthDate) / 365,
+                1,
+                2)) >= (SELECT 
+            AVG(SUBSTRING(DATEDIFF(CURDATE(), BirthDate) / 365,
+                    1,
+                    2))
+        FROM
+            Employees);
 
 -- 27: Escribir una consulta para imprimir el nombre, apellidos y edad de aquellos empleados
 -- que tienen una edad igual o superior a la edad media de los empleados con el cargo Sales Representative.
 
--- 28: Productos cuyo valor de unidades en stock sea superior al valor mínimo de unidades en stock de los productos 
--- de la categoría 4 o superior al valor mínimo de unidades en stock de los productos 
--- de la categoría 6.
+SELECT 
+    CONCAT_WS(' ', FirstName, LastName) AS Empleado,
+    SUBSTRING(DATEDIFF(CURDATE(), BirthDate) / 365,
+        1,
+        2) AS Edad
+FROM
+    Employees
+WHERE
+    ROUND(SUBSTRING(DATEDIFF(CURDATE(), BirthDate) / 365,
+                1,
+                2)) >= (SELECT 
+            AVG(SUBSTRING(DATEDIFF(CURDATE(), BirthDate) / 365,
+                    1,
+                    2))
+        FROM
+            Employees
+        WHERE
+            Title = 'Vice President, Sales');
 
--- 29: Productos cuya categoría empieza por la letra C o D.
+-- 28: Productos cuyo valor de unidades en stock sea superior al valor mínimo de unidades en stock de los productos 
+-- de la categoría 4 o superior al valor mínimo de unidades en stock de los productos de la categoría 6.
+
+SELECT 
+    pro.*
+FROM
+    Products AS pro
+WHERE
+    pro.UnitsInStock > (SELECT 
+            MIN(UnitsInStock)
+        FROM
+            Products
+        WHERE
+            CategoryID LIKE 4)
+        OR pro.UnitsInStock > (SELECT 
+            MIN(UnitsInStock)
+        FROM
+            Products
+        WHERE
+            CategoryID LIKE 6);
+
+-- 29: Productos cuya categoría empieza por la letra C o D. -- DUDA
+SELECT * from categories WHERE CategoryName LIKE "C%";
+
+SELECT * FROM Products AS pro GROUP BY CategoryID HAVING pro.CategoryID =
+(SELECT count(*) from categories WHERE CategoryName LIKE "C%") OR
+CategoryID = (SELECT count(*) from categories WHERE CategoryName LIKE "D%");
+
 
 -- 30: Ciudades que tienen menos clientes (customers) 
 -- que la ciudad de Buenos Aires y Munich.
