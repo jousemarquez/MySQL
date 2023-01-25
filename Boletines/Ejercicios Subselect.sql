@@ -311,7 +311,6 @@ SELECT * FROM Products AS pro GROUP BY CategoryID HAVING pro.CategoryID =
 CategoryID = (SELECT count(*) from categories WHERE CategoryName LIKE "D%");
 
 
--- 30: Ciudades que tienen menos clientes (customers) 
--- que la ciudad de Buenos Aires y Munich.
+-- 30: Ciudades que tienen menos clientes (customers) que la ciudad de Buenos Aires y Munich.
 
 -- 31: empleados que son más jóvenes que Margaret, Laura y Michael.
