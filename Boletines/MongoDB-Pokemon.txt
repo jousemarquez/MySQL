@@ -1,0 +1,450 @@
+MONGODB POKEMON
+
+Query #1 - Print all the Pokemon names to the MongoDB console like so name: <name_of_pokemon>.
+
+[Atlas atlas-hg04ss-shard-0 [primary] pokemons> db.pokemons.find().forEach( function(pokemon) {print ("name: " + pokemon.name); } );
+name: Bulbasaur
+name: Metapod
+name: Fearow
+name: Pikachu
+name: Nidorino
+name: Ninetales
+name: Diglett
+name: Dugtrio
+name: Zubat
+name: Caterpie
+name: Venusaur
+name: Kakuna
+name: Beedrill
+name: Ivysaur
+name: Butterfree
+name: Raticate
+name: Ekans
+name: Arbok
+name: Nidoran?
+name: Golbat
+name: Vileplume
+name: Meowth
+name: Clefable
+name: Clefairy
+name: Charizard
+name: Weedle
+name: Wartortle
+name: Pidgeot
+name: Spearow
+name: Raichu
+name: Nidorina
+name: Nidoqueen
+name: Nidoking
+name: Oddish
+name: Vulpix
+name: Parasect
+name: Persian
+name: Psyduck
+name: Growlithe
+name: Charmander
+name: Charmeleon
+name: Squirtle
+name: Blastoise
+name: Pidgey
+name: Rattata
+name: Pidgeotto
+name: Sandshrew
+name: Sandslash
+name: Nidoran?
+name: Jigglypuff
+name: Wigglytuff
+name: Gloom
+name: Paras
+name: Venonat
+name: Venomoth
+name: Abra
+name: Machop
+name: Arcanine
+name: Tentacool
+name: Poliwrath
+name: Golem
+name: Farfetch'd
+name: Graveler
+name: Geodude
+name: Drowzee
+name: Hypno
+name: Voltorb
+name: Cubone
+name: Exeggcute
+name: Hitmonchan
+name: Koffing
+name: Lickitung
+name: Rhyhorn
+name: Rhydon
+name: Porygon
+name: Mr. Mime
+name: Aerodactyl
+name: Flareon
+name: Articuno
+name: Dragonair
+name: Mankey
+name: Tentacruel
+name: Rapidash
+name: Slowbro
+name: Magnemite
+name: Slowpoke
+name: Gastly
+name: Gengar
+name: Goldeen
+name: Chansey
+name: Kangaskhan
+name: Magikarp
+name: Eevee
+name: Omanyte
+name: Magmar
+name: Omastar
+name: Kabuto
+name: Zapdos
+name: Kabutops
+name: Snorlax
+name: Moltres
+name: Mew
+name: Primeape
+name: Poliwhirl
+name: Alakazam
+name: Bellsprout
+name: Kadabra
+name: Victreebel
+name: Seel
+name: Doduo
+name: Shellder
+name: Haunter
+name: Dodrio
+name: Krabby
+name: Kingler
+name: Exeggutor
+name: Grimer
+name: Dewgong
+name: Tangela
+name: Seaking
+name: Scyther
+name: Jynx
+name: Gyarados
+name: Tauros
+name: Vaporeon
+name: Dratini
+name: Dragonite
+name: Mewtwo
+name: Golduck
+name: Poliwag
+name: Machamp
+name: Machoke
+name: Weepinbell
+name: Ponyta
+name: Magneton
+name: Cloyster
+name: Electrode
+name: Muk
+name: Marowak
+name: Onix
+name: Hitmonlee
+name: Weezing
+name: Horsea
+name: Seadra
+name: Staryu
+name: Starmie
+name: Electabuzz
+name: Ditto
+name: Lapras
+name: Pinsir
+name: Jolteon
+
+Query #2 - Find the Pokemon with the name "Mew".
+
+[Atlas atlas-hg04ss-shard-0 [primary] pokemons> db.pokemons.find({name: "Mew"});
+[
+  {
+    _id: ObjectId("63c7f05b1f8ca7fed6bac680"),
+    id: '151',
+    name: 'Mew',
+    img: 'http://img.pokemondb.net/artwork/mew.jpg',
+    type: [ 'Psychic' ],
+    stats: {
+      hp: '100',
+      attack: '100',
+      defense: '100',
+      spattack: '100',
+      spdefense: '100',
+      speed: '100'
+    },
+    moves: {
+      level: [
+        { learnedat: '', name: 'pound', gen: 'V' },
+        { learnedat: '', name: 'reflect type', gen: 'V' },
+        { learnedat: '', name: 'transform', gen: 'V' },
+        { learnedat: '10', name: 'mega punch', gen: 'V' },
+        { learnedat: '20', name: 'metronome', gen: 'V' },
+        { learnedat: '30', name: 'psychic', gen: 'V' },
+        { learnedat: '40', name: 'barrier', gen: 'V' },
+        { learnedat: '50', name: 'ancientpower', gen: 'V' },
+        { learnedat: '60', name: 'amnesia', gen: 'V' },
+        { learnedat: '70', name: 'me first', gen: 'V' },
+        { learnedat: '80', name: 'baton pass', gen: 'V' },
+        { learnedat: '90', name: 'nasty plot', gen: 'V' },
+        { learnedat: '100', name: 'aura sphere', gen: 'V' }
+      ],
+      tmhm: [
+        { learnedat: 'tm01', name: 'hone claws', gen: 'V' },
+        { learnedat: 'tm02', name: 'dragon claw', gen: 'V' },
+        { learnedat: 'tm03', name: 'psyshock', gen: 'V' },
+        { learnedat: 'tm04', name: 'calm mind', gen: 'V' },
+        { learnedat: 'tm05', name: 'roar', gen: 'V' },
+        { learnedat: 'tm06', name: 'toxic', gen: 'V' },
+        { learnedat: 'tm07', name: 'hail', gen: 'V' },
+        { learnedat: 'tm08', name: 'bulk up', gen: 'V' },
+        { learnedat: 'tm09', name: 'venoshock', gen: 'V' },
+        { learnedat: 'tm10', name: 'hidden power', gen: 'V' },
+        { learnedat: 'tm11', name: 'sunny day', gen: 'V' },
+        { learnedat: 'tm12', name: 'taunt', gen: 'V' },
+        { learnedat: 'tm13', name: 'ice beam', gen: 'V' },
+        { learnedat: 'tm14', name: 'blizzard', gen: 'V' },
+        { learnedat: 'tm15', name: 'hyper beam', gen: 'V' },
+        { learnedat: 'tm16', name: 'light screen', gen: 'V' },
+        { learnedat: 'tm17', name: 'protect', gen: 'V' },
+        { learnedat: 'tm18', name: 'rain dance', gen: 'V' },
+        { learnedat: 'tm19', name: 'telekinesis', gen: 'V' },
+        { learnedat: 'tm20', name: 'safeguard', gen: 'V' },
+        { learnedat: 'tm21', name: 'frustration', gen: 'V' },
+        { learnedat: 'tm22', name: 'solarbeam', gen: 'V' },
+        { learnedat: 'tm23', name: 'smack down', gen: 'V' },
+        { learnedat: 'tm24', name: 'thunderbolt', gen: 'V' },
+        { learnedat: 'tm25', name: 'thunder', gen: 'V' },
+        { learnedat: 'tm26', name: 'earthquake', gen: 'V' },
+        { learnedat: 'tm27', name: 'return', gen: 'V' },
+        { learnedat: 'tm28', name: 'dig', gen: 'V' },
+        { learnedat: 'tm29', name: 'psychic', gen: 'V' },
+        { learnedat: 'tm30', name: 'shadow ball', gen: 'V' },
+        { learnedat: 'tm31', name: 'brick break', gen: 'V' },
+        { learnedat: 'tm32', name: 'double team', gen: 'V' },
+        { learnedat: 'tm33', name: 'reflect', gen: 'V' },
+        { learnedat: 'tm34', name: 'sludge wave', gen: 'V' },
+        { learnedat: 'tm35', name: 'flamethrower', gen: 'V' },
+        { learnedat: 'tm36', name: 'sludge bomb', gen: 'V' },
+        { learnedat: 'tm37', name: 'sandstorm', gen: 'V' },
+        { learnedat: 'tm38', name: 'fire blast', gen: 'V' },
+        { learnedat: 'tm39', name: 'rock tomb', gen: 'V' },
+        { learnedat: 'tm40', name: 'aerial ace', gen: 'V' },
+        { learnedat: 'tm41', name: 'torment', gen: 'V' },
+        { learnedat: 'tm42', name: 'facade', gen: 'V' },
+        { learnedat: 'tm43', name: 'flame charge', gen: 'V' },
+        { learnedat: 'tm44', name: 'rest', gen: 'V' },
+        { learnedat: 'tm45', name: 'attract', gen: 'V' },
+        { learnedat: 'tm46', name: 'thief', gen: 'V' },
+        { learnedat: 'tm47', name: 'low sweep', gen: 'V' },
+        { learnedat: 'tm48', name: 'round', gen: 'V' },
+        { learnedat: 'tm49', name: 'echoed voice', gen: 'V' },
+        { learnedat: 'tm50', name: 'overheat', gen: 'V' },
+        { learnedat: 'tm51', name: 'ally switch', gen: 'V' },
+        { learnedat: 'tm52', name: 'focus blast', gen: 'V' },
+        { learnedat: 'tm53', name: 'energy ball', gen: 'V' },
+        { learnedat: 'tm54', name: 'false swipe', gen: 'V' },
+        { learnedat: 'tm55', name: 'scald', gen: 'V' },
+        { learnedat: 'tm56', name: 'fling', gen: 'V' },
+        { learnedat: 'tm57', name: 'charge beam', gen: 'V' },
+        { learnedat: 'tm58', name: 'sky drop', gen: 'V' },
+        { learnedat: 'tm59', name: 'incinerate', gen: 'V' },
+        { learnedat: 'tm60', name: 'quash', gen: 'V' },
+        { learnedat: 'tm61', name: 'will-o-wisp', gen: 'V' },
+        { learnedat: 'tm62', name: 'acrobatics', gen: 'V' },
+        { learnedat: 'tm63', name: 'embargo', gen: 'V' },
+        { learnedat: 'tm64', name: 'explosion', gen: 'V' },
+        { learnedat: 'tm65', name: 'shadow claw', gen: 'V' },
+        { learnedat: 'tm66', name: 'payback', gen: 'V' },
+        { learnedat: 'tm67', name: 'retaliate', gen: 'V' },
+        { learnedat: 'tm68', name: 'giga impact', gen: 'V' },
+        { learnedat: 'tm69', name: 'rock polish', gen: 'V' },
+        { learnedat: 'tm70', name: 'flash', gen: 'V' },
+        { learnedat: 'tm71', name: 'stone edge', gen: 'V' },
+        { learnedat: 'tm72', name: 'volt switch', gen: 'V' },
+        { learnedat: 'tm73', name: 'thunder wave', gen: 'V' },
+        { learnedat: 'tm74', name: 'gyro ball', gen: 'V' },
+        { learnedat: 'tm75', name: 'swords dance', gen: 'V' },
+        { learnedat: 'tm76', name: 'struggle bug', gen: 'V' },
+        { learnedat: 'tm77', name: 'psych up', gen: 'V' },
+        { learnedat: 'tm78', name: 'bulldoze', gen: 'V' },
+        { learnedat: 'tm79', name: 'frost breath', gen: 'V' },
+        { learnedat: 'tm80', name: 'rock slide', gen: 'V' },
+        { learnedat: 'tm81', name: 'x-scissor', gen: 'V' },
+        { learnedat: 'tm82', name: 'dragon tail', gen: 'V' },
+        { learnedat: 'tm83', name: 'work up', gen: 'V' },
+        { learnedat: 'tm84', name: 'poison jab', gen: 'V' },
+        { learnedat: 'tm85', name: 'dream eater', gen: 'V' },
+        { learnedat: 'tm86', name: 'grass knot', gen: 'V' },
+        { learnedat: 'tm87', name: 'swagger', gen: 'V' },
+        { learnedat: 'tm88', name: 'pluck', gen: 'V' },
+        { learnedat: 'tm89', name: 'u-turn', gen: 'V' },
+        { learnedat: 'tm90', name: 'substitute', gen: 'V' },
+        { learnedat: 'tm91', name: 'flash cannon', gen: 'V' },
+        { learnedat: 'tm92', name: 'trick room', gen: 'V' },
+        { learnedat: 'tm93', name: 'wild charge', gen: 'V' },
+        { learnedat: 'tm94', name: 'rock smash', gen: 'V' },
+        { learnedat: 'tm95', name: 'snarl', gen: 'V' },
+        { learnedat: 'hm01', name: 'cut', gen: 'V' },
+        { learnedat: 'hm02', name: 'fly', gen: 'V' },
+        { learnedat: 'hm03', name: 'surf', gen: 'V' },
+        { learnedat: 'hm04', name: 'strength', gen: 'V' },
+        { learnedat: 'hm05', name: 'waterfall', gen: 'V' },
+        { learnedat: 'hm06', name: 'dive', gen: 'V' }
+      ],
+      egg: [],
+      tutor: [],
+      gen34: [
+        { name: 'focus punch', method: 'Gen IV TM01' },
+        { name: 'water pulse', method: 'Gen IV TM03' },
+        { name: 'bullet seed', method: 'Gen IV TM09' },
+        { name: 'giga drain', method: 'Gen IV TM19' },
+        { name: 'iron tail', method: 'Gen IV TM23' },
+        { name: 'shock wave', method: 'Gen IV TM34' },
+        { name: 'secret power', method: 'Gen IV TM43' },
+        { name: 'steel wing', method: 'Gen IV TM47' },
+        { name: 'skill swap', method: 'Gen IV TM48' },
+        { name: 'snatch', method: 'Gen IV TM49' },
+        { name: 'roost', method: 'Gen IV TM51' },
+        { name: 'brine', method: 'Gen IV TM55' },
+        { name: 'endure', method: 'Gen IV TM58' },
+        { name: 'dragon pulse', method: 'Gen IV TM59' },
+        { name: 'drain punch', method: 'Gen IV TM60' },
+        { name: 'silver wind', method: 'Gen IV TM62' },
+        { name: 'recycle', method: 'Gen IV TM67' },
+        { name: 'avalanche', method: 'Gen IV TM72' },
+        { name: 'stealth rock', method: 'Gen IV TM76' },
+        { name: 'captivate', method: 'Gen IV TM78' },
+        { name: 'dark pulse', method: 'Gen IV TM79' },
+        { name: 'sleep talk', method: 'Gen IV TM82' },
+        { name: 'natural gift', method: 'Gen IV TM83' },
+        { name: 'defog', method: 'Gen IV HM05 DPt' },
+        { name: 'whirlpool', method: 'Gen IV HM05 HGSS' },
+        { name: 'air cutter', method: 'Move Tutor  PtHGSS' },
+        { name: 'fire punch', method: 'Move Tutor  PtHGSS' },
+        { name: 'fury cutter', method: 'Move Tutor  PtHGSS' },
+        { name: 'ice punch', method: 'Move Tutor  PtHGSS' },
+        { name: 'icy wind', method: 'Move Tutor  PtHGSS' },
+        { name: 'knock off', method: 'Move Tutor  PtHGSS' },
+        { name: 'ominous wind', method: 'Move Tutor  PtHGSS' },
+        { name: 'sucker punch', method: 'Move Tutor  PtHGSS' },
+        { name: 'trick', method: 'Move Tutor  PtHGSS' },
+        { name: 'thunderpunch', method: 'Move Tutor  PtHGSS' },
+        { name: 'vacuum wave', method: 'Move Tutor  PtHGSS' },
+        { name: 'zen headbutt', method: 'Move Tutor  PtHGSS' },
+        { name: 'helping hand', method: 'Move Tutor  PtHGSS' },
+        { name: 'last resort', method: 'Move Tutor  PtHGSS' },
+        { name: 'magnet rise', method: 'Move Tutor  PtHGSS' },
+        { name: 'snore', method: 'Move Tutor  PtHGSS' },
+        { name: 'spite', method: 'Move Tutor  PtHGSS' },
+        { name: 'swift', method: 'Move Tutor  PtHGSS' },
+        { name: 'synthesis', method: 'Move Tutor  PtHGSS' },
+        { name: 'uproar', method: 'Move Tutor  PtHGSS' },
+        { name: 'aqua tail', method: 'Move Tutor  PtHGSS' },
+        { name: 'bounce', method: 'Move Tutor  PtHGSS' },
+        { name: 'earth power', method: 'Move Tutor  PtHGSS' },
+        { name: 'endeavor', method: 'Move Tutor  PtHGSS' },
+        { name: 'gastro acid', method: 'Move Tutor  PtHGSS' },
+        { name: 'gunk shot', method: 'Move Tutor  PtHGSS' },
+        { name: 'heat wave', method: 'Move Tutor  PtHGSS' },
+        { name: 'iron defense', method: 'Move Tutor  PtHGSS' },
+        { name: 'iron head', method: 'Move Tutor  PtHGSS' },
+        { name: 'mudslap', method: 'Move Tutor  PtHGSS' },
+        { name: 'outrage', method: 'Move Tutor  PtHGSS' },
+        { name: 'rollout', method: 'Move Tutor  PtHGSS' },
+        { name: 'seed bomb', method: 'Move Tutor  PtHGSS' },
+        { name: 'signal beam', method: 'Move Tutor  PtHGSS' },
+        { name: 'superpower', method: 'Move Tutor  PtHGSS' },
+        { name: 'twister', method: 'Move Tutor  PtHGSS' },
+        { name: 'super fang', method: 'Move Tutor  HGSS' },
+        { name: 'pain split', method: 'Move Tutor  HGSS' },
+        { name: 'string shot', method: 'Move Tutor  HGSS' },
+        { name: 'tailwind', method: 'Move Tutor  HGSS' },
+        { name: 'gravity', method: 'Move Tutor  HGSS' },
+        { name: 'worry seed', method: 'Move Tutor  HGSS' },
+        { name: 'magic coat', method: 'Move Tutor  HGSS' },
+        { name: 'role play', method: 'Move Tutor  HGSS' },
+        { name: 'heal bell', method: 'Move Tutor  HGSS' },
+        { name: 'low kick', method: 'Move Tutor  HGSS' },
+        { name: 'sky attack', method: 'Move Tutor  HGSS' },
+        { name: 'block', method: 'Move Tutor  HGSS' },
+        { name: 'bug bite', method: 'Move Tutor  HGSS' },
+        { name: 'headbutt', method: 'Move Tutor  HGSS' },
+        { name: 'dynamicpunch', method: 'Move Tutor  Emerald' },
+        { name: 'defense curl', method: 'Move Tutor  Emerald' },
+        { name: 'mega kick', method: 'Move Tutor  FRLG' },
+        { name: 'body slam', method: 'Move Tutor  FRLG' },
+        { name: 'doubleedge', method: 'Move Tutor  FRLG' },
+        { name: 'counter', method: 'Move Tutor  FRLG' },
+        { name: 'seismic toss', method: 'Move Tutor  FRLG' },
+        { name: 'mimic', method: 'Move Tutor  FRLG' },
+        { name: 'softboiled', method: 'Move Tutor  FRLG' },
+        { name: 'faint attack', method: 'Mew Tutor  XD' },
+        { name: 'fake out', method: 'Mew Tutor  XD' },
+        { name: 'hypnosis', method: 'Mew Tutor  XD' },
+        { name: 'night shade', method: 'Mew Tutor  XD' },
+        { name: 'trick', method: 'Mew Tutor  XD' },
+        { name: 'zap cannon', method: 'Mew Tutor  XD' }
+      ]
+    },
+    damages: {
+      normal: '1',
+      fire: '1',
+      water: '1',
+      electric: '1',
+      grass: '1',
+      ice: '1',
+      fight: '0.5',
+      poison: '1',
+      ground: '1',
+      flying: '1',
+      psychic: '0.5',
+      bug: '2',
+      rock: '1',
+      ghost: '2',
+      dragon: '1',
+      dark: '2',
+      steel: '1'
+    },
+    misc: {
+      sex: { male: '', female: '' },
+      abilities: { normal: [ 'Synchronize' ], hidden: [] },
+      classification: 'new specie pokemon',
+      height: '1’04”',
+      weight: '8.8',
+      capturerate: 45,
+      eggsteps: '30720',
+      expgrowth: '1059860',
+      happiness: '100',
+      evpoints: [ '3 HP Point(s)' ],
+      fleeflag: '0',
+      entreeforestlevel: '30'
+    }
+  }
+]
+
+Query #3 - How many Pokemons are 87.5 male?
+
+Atlas atlas-hg04ss-shard-0 [primary] pokemons> db.pokemons.find({"misc.sex.male":87.5}).count();
+19
+
+Query #4 How many Pokemons have ice : "2"?
+
+[Atlas atlas-hg04ss-shard-0 [primary] pokemons> db.pokemons.find({"damages.ice": "2"}).count();
+44
+
+Query #5 How many Pokemons have ice : "2" AND female : "12.5"?
+
+[Atlas atlas-hg04ss-shard-0 [primary] pokemons> db.pokemons.find({$and: [{"damages.ice": "2"}, {"misc.sex.female":"12.5"}]}).count();
+4
+
+Query #6 How many Pokemons have "speed": "60" OR "type" : "Grass"?
+
+[Atlas atlas-hg04ss-shard-0 [primary] pokemons> db.pokemons.find({$or: [{"stats.speed": "60"}, {"type":"Grass"}]}).count();
+20
+
+Query #7 How many have BOTH "speed": "60" AND "type" : "Grass"?
+
+[Atlas atlas-hg04ss-shard-0 [primary] pokemons> db.pokemons.find({$and: [{"stats.speed": "60"}, {"type":"Grass"}]}).count();
+2
+
