@@ -4,7 +4,7 @@ values ("1", "TNBC", "7");
 -- 2.	Incrementa todos los precios por un céntimo.
 UPDATE provee 
 SET 
-    Precio = Precio - 1;
+    Precio = Precio + 1;
 -- 3.	Actualiza la base de datos para reflejar que "Corporacion Susan Calvin" (code "RBT") no proveerá clavos (code 4).
 DELETE FROM provee 
 WHERE

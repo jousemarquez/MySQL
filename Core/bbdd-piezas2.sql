@@ -1,25 +1,22 @@
-CREATE DATABASE siegeofmytra;
-USE Accounts;
+CREATE DATABASE PIEZAS;
+USE PIEZAS;
 CREATE TABLE Pieza (
-    id INTEGER PRIMARY KEY NOT NULL,
-    Player TEXT NOT NULL,
-    Gold VARCHAR(40),
-    Turn VARCHAR(40) 
-);
-CREATE TABLE Proveedores (
-    Codigo VARCHAR(40) PRIMARY KEY NOT NULL,
-    Nombre TEXT NOT NULL
-);
-CREATE TABLE Provee (
-    ID_Pieza INTEGER,
-    FOREIGN KEY (ID_Pieza)
-        REFERENCES Pieza (Codigo),
-    ID_Proveedor VARCHAR(40),
-    FOREIGN KEY (ID_Proveedor)
-        REFERENCES Proveedores (Codigo),
-    Precio INTEGER NOT NULL,
-    PRIMARY KEY (ID_Pieza , ID_Proveedor)
-);
+  Codigo INTEGER PRIMARY KEY NOT NULL,
+  Nombre TEXT NOT NULL
+  );
+ CREATE TABLE Proveedores (
+  Codigo VARCHAR(40) 
+  PRIMARY KEY NOT NULL,  
+  Nombre TEXT NOT NULL 
+  );
+ CREATE TABLE Provee (
+  ID_Pieza INTEGER, 
+  FOREIGN KEY (ID_Pieza) REFERENCES Pieza(Codigo),
+  ID_Proveedor VARCHAR(40), 
+  FOREIGN KEY (ID_Proveedor) REFERENCES Proveedores(Codigo),  
+  Precio INTEGER NOT NULL,
+  PRIMARY KEY(ID_Pieza, ID_Proveedor) 
+  );
 
 INSERT INTO Proveedores (Codigo, Nombre) VALUES('HAL','Empresas Clarke');
  INSERT INTO Proveedores (Codigo, Nombre) VALUES('RBT','Corporacion Susan Calvin');

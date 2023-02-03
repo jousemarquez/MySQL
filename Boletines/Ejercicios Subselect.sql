@@ -6,7 +6,8 @@ HAVING CantidadClientes < (SELECT COUNT(*)
 							FROM Customers
 							WHERE City = 'Buenos Aires');
 
--- 1. Productos cuyo valor de unidades en stock sea superior al valor máximo de unidades en stock de los productos de la categoría 4.
+-- 1. Productos cuyo valor de unidades en stock sea superior al valor máximo de unidades en stock de los
+-- productos de la categoría 4.
 SELECT *
 FROM Products
 WHERE UnitsInStock * UnitPrice > (SELECT MAX(UnitsInStock * UnitPrice)
@@ -14,14 +15,12 @@ WHERE UnitsInStock * UnitPrice > (SELECT MAX(UnitsInStock * UnitPrice)
 									WHERE CategoryID = 4);
 
 -- 2. Nombre de los empleados que son jefes.
-select * from employees;
 SELECT CONCAT(Jefe.FirstName, ' ', Jefe.LastName) 'Jefes'
 FROM employees AS Jefe, employees AS Empleado
 WHERE Empleado.ReportsTo = Jefe.EmployeeID
 GROUP BY Jefe.EmployeeID;
 
 -- 3. Productos cuya categoría empiezan por la letra C.
-
 SELECT ProductID, ProductName
 FROM Products
 WHERE CategoryID IN (SELECT CategoryID
