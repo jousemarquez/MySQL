@@ -77,16 +77,32 @@ WHERE
 DELETE FROM Boxes WHERE Value < 100;
 
 -- 6. Elimina todas las cajas de los almacenes saturados.
-SELECT * FROM Warehouses AS war JOIN Boxes AS box ON (war.Code = box.Warehouse); -- DUDA
+use warehouses;
+SELECT * FROM Warehouses AS war JOIN Boxes AS box ON (war.Code = box.Warehouse);
 
 -- BOLETÍN DEPARTMENTS
 USE DEPARTMENTS;
 
--- 1. Añade un nuevo departamento llamado "Quality Assurance", con un presupuesto de $40,000 y código de departamento de 11. Añade un empleado llamado "Mary Moore" en ese departamento, con SSN 847-21-9811.
+-- 1. Añade un nuevo departamento llamado "Quality Assurance", con un presupuesto de $40,000 y código de departamento de 11.
+-- Añade un empleado llamado "Mary Moore" en ese departamento, con SSN 847-21-9811.
+START TRANSACTION;
+INSERT INTO Departments(Code,Name,Budget)
+VALUES (11,"Quality Assurance",40000);
+
+INSERT INTO Employees(SSN,Name,LastName,Department)
+VALUES (847219811,"Mary","Moore",11);
+COMMIT;
 
 -- 2. Reduce el presupuesto de todos los departamentos un 10%.
+START TRANSACTION;
+UPDATE Departments
+SET 
+    Budget = Budget - ((10 * Budget) / 100);
+COMMIT;
 
 -- 3. Reasigna todos los empleados del departamento Research (code 77) al departamento IT (code 14).
+START TRANSACTION;
+UPDATE 
 
 -- 4. Borra todos los empleados del departamento de IT (code 14).
 
