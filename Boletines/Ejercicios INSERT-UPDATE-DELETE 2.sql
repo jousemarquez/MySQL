@@ -47,6 +47,7 @@ USE WAREHOUSES;
 
 -- 1. Crea un nuevo almacén en New York con capacidad para 3 cajas.
 SELECT * FROM WAREHOUSES;
+SELECT * FROM BOXES;
 
 INSERT INTO Warehouses (Code,Location,Capacity)
 VALUES (6,"New York","3");
@@ -74,11 +75,29 @@ WHERE
                 BOXES) AS tmp);
 
 -- 5. Elimina todas las cajas con un valor inferior a $100.
+START TRANSACTION;
 DELETE FROM Boxes WHERE Value < 100;
+COMMIT;
 
 -- 6. Elimina todas las cajas de los almacenes saturados.
-use warehouses;
-SELECT * FROM Warehouses AS war JOIN Boxes AS box ON (war.Code = box.Warehouse);
+DELETE FROM boxes 
+WHERE
+    Warehouse IN (SELECT 
+        *
+    FROM
+        (SELECT 
+            Code
+        FROM
+            warehouses AS war
+        
+        WHERE
+            wr.Capacity <= (SELECT 
+                COUNT(*)
+            FROM
+                boxes AS box
+            
+            WHERE
+                box.Warehouse = war.Code)));
 
 -- BOLETÍN DEPARTMENTS
 USE DEPARTMENTS;
@@ -88,7 +107,9 @@ USE DEPARTMENTS;
 START TRANSACTION;
 INSERT INTO Departments(Code,Name,Budget)
 VALUES (11,"Quality Assurance",40000);
+COMMIT;
 
+START TRANSACTION;
 INSERT INTO Employees(SSN,Name,LastName,Department)
 VALUES (847219811,"Mary","Moore",11);
 COMMIT;
@@ -100,23 +121,63 @@ SET
     Budget = Budget - ((10 * Budget) / 100);
 COMMIT;
 
+-- OTRA FORMA DE HACERLO
+START TRANSACTION;
+UPDATE Departments 
+SET 
+    Budget = Budget * 0.9;
+COMMIT;
+
 -- 3. Reasigna todos los empleados del departamento Research (code 77) al departamento IT (code 14).
 START TRANSACTION;
-UPDATE 
+UPDATE Employees 
+SET 
+    Department = 14
+WHERE
+    Department = 77;
+COMMIT;
 
 -- 4. Borra todos los empleados del departamento de IT (code 14).
+START TRANSACTION;
+DELETE FROM Employees 
+WHERE
+    Department = 14;
+COMMIT;
 
 -- 5. Borra todos los empleados que trabajan en departamentos con un presupuesto superior o igual a $60,000.
+DELETE Employees FROM Employees
+        JOIN
+    departments ON Departments.code = Employees.Department 
+WHERE
+    departments.budget >= 60000;
 
 -- 6. Borra todos los empleados.
+START TRANSACTION;
+DELETE FROM employees; -- Borra el contenido de la tabla Employees
+COMMIT;
 
 -- BOLETÍN MANUFACTURERS
 USE MANUFACTURERS;
 
 -- 1. Añade un nuevo producto: Loudspeakers, $70, manufacturer 2.
+INSERT INTO Products (Code,Name,Price,Manufacturer) VALUE(11,"Loudspeakers",70,2);
 
 -- 2. Actualiza el nombre del producto 8 a "Laser Printer".
+UPDATE Products 
+SET 
+    Name = 'Laser Printer'
+WHERE
+    Code = 8;
 
 -- 3. Aplica un 10% de descuento a todos los productos.
+START TRANSACTION;
+UPDATE Products
+SET 
+    Price = Price * 0.9;
+COMMIT;
 
 -- 4. Aplica un 10% de descuento a todos los productos con un precio superior o igual a $120.
+UPDATE Products
+SET 
+    Price = Price * 0.9
+WHERE Price >= 120;
