@@ -1,0 +1,102 @@
+-- 1.
+
+CREATE DATABASE IF NOT EXISTS PIECES;
+USE PIECES;
+CREATE TABLE IF NOT EXISTS Pieces (
+    CodeID INT PRIMARY KEY NOT NULL,
+    Name TEXT
+);
+CREATE TABLE IF NOT EXISTS Providers (
+    CodeID VARCHAR(40) PRIMARY KEY NOT NULL,
+    Name TEXT NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS Provides (
+    Piece INT,
+    Provider VARCHAR(40),
+    Price INT NOT NULL,
+    PRIMARY KEY (Piece , Provider),
+    FOREIGN KEY (Piece)
+        REFERENCES Pieces (CodeID), 
+	FOREIGN KEY (Provider)
+        REFERENCES Providers (CodeID)
+);
+
+-- 2.
+/*
+CREATE DATABASE IF NOT EXISTS MOVIES;
+USE MOVIES;
+
+CREATE TABLE IF NOT EXISTS Movies(
+	Code INT PRIMARY KEY,
+    Title VARCHAR(255) NOT NULL,
+    Rating VARCHAR(255)
+);
+
+CREATE TABLE IF NOT EXISTS MovieTheaters (
+	Code INT PRIMARY KEY,
+    Name VARCHAR(255) NOT NULL,
+    Movie INT,
+    FOREIGN KEY (Movie)
+		REFERENCES Movies(Code)
+);
+*/
+-- 3.
+/*
+CREATE DATABASE IF NOT EXISTS WAREHOUSES;
+USE WAREHOUSES;
+CREATE TABLE IF NOT EXISTS Warehouses (
+	Code INT NOT NULL PRIMARY KEY,
+    Location VARCHAR(255) NOT NULL,
+    Capacity INT NOT NULL
+);
+CREATE TABLE IF NOT EXISTS Boxes (
+	Code VARCHAR(255) NOT NULL PRIMARY KEY,
+    Contents VARCHAR(255) NOT NULL,
+    Value REAL NOT NULL,
+    Warehouse INT NOT NULL,
+    FOREIGN KEY (Warehouse)
+		REFERENCES Warehouses (Code)
+);
+*/
+-- 4
+/*
+CREATE DATABASE IF NOT EXISTS Manufacturers;
+USE Manufacturers;
+CREATE TABLE IF NOT EXISTS Manufacturers (
+	Code INT PRIMARY KEY,
+    Name VARCHAR(255) NOT NULL
+);
+CREATE TABLE IF NOT EXISTS Products (
+	Code INT PRIMARY KEY,
+    Name VARCHAR(255) NOT NULL,
+    Price DECIMAL NOT NULL,
+    Manufacturer INT NOT NULL,
+    FOREIGN KEY (Manufacturer)
+		REFERENCES Manufacturers (Code)
+);
+*/
+
+-- 5
+/*
+CREATE DATABASE IF NOT EXISTS Departments;
+USE Departments;
+CREATE TABLE IF NOT EXISTS Departments (
+	Code INT PRIMARY KEY,
+    Name VARCHAR(255) NOT NULL,
+    Budget DECIMAL NOT NULL
+);
+CREATE TABLE IF NOT EXISTS Employees (
+	SSN INT PRIMARY KEY,
+    Name VARCHAR(255) NOT NULL,
+    LastName VARCHAR(255) NOT NULL,
+    Department INT NOT NULL,
+    FOREIGN KEY (Department)
+		REFERENCES Departments (Code)
+);
+*/
+-- 6
+
+
+
+
