@@ -45,6 +45,7 @@ WHERE
                 Customers
             WHERE
                 City = 'Barcelona')));
+                
 -- EJERCICIO 4: Imprima los productos cuyo precio unitario y unidades en stock sean inferiores al
 -- precio unitario medio y unidades en stock medio.
 
