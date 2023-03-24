@@ -266,21 +266,14 @@ BEGIN
 END $$;
 DELIMITER ;
 
+-- 2. Escribe una función que devuelva el valor de la hipotenusa de un triángulo a partir de los valores de sus lados.
 
 DELIMITER $$;
-DROP FUNCTION IF EXISTS es_divisible$$;
-CREATE FUNCTION es_divisible(a INT, b INT)
-RETURNS BOOLEAN
-BEGIN
-    IF MOD(a,b) = 0 THEN
-        RETURN 1;
-    ELSE
-        RETURN 0;
-    END IF;
-END $$
-DELIMITER ;
+DROP PROCEDURE IF EXISTS func_hipotenusear$$;
+CREATE PROCEDURE func_hipotenusear(IN lado1 FLOAT, IN lado2 FLOAT, IN lado3 FLOAT, OUT hipotenusa FLOAT);
 
--- 2. Escribe una función que devuelva el valor de la hipotenusa de un triángulo a partir de los valores de sus lados.
+
+
 -- 3. Escribe una función que reciba como parámetro de entrada un valor numérico que represente un día de la semana y que
 -- devuelva una cadena de caracteres con el nombre del día de la semana correspondiente. Por ejemplo, para el valor de
 -- entrada 1 debería devolver la cadena lunes
