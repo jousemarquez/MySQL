@@ -52,7 +52,12 @@ BEGIN
 END$$;
 DELIMITER ;
 
-SELECT ProductID, ProductName, multiplicar(UnitPrice, UnitsInStock) AS "Beneficios de venta" FROM products;
+SELECT 
+    ProductID,
+    ProductName,
+    MULTIPLICAR(UnitPrice, UnitsInStock) AS 'Beneficios de venta'
+FROM
+    products;
 
 # Crear una función medir_longitud que reciba una cadena de caracteres y devuela su longitud.
 # Usarla para imprimir el nombre de todos los empleados junto con la longitud de sus nombres.
@@ -67,7 +72,10 @@ BEGIN
 END$$;
 DELIMITER ;
 
-SELECT FirstName, medir_longitud(FirstName) FROM employees;
+SELECT 
+    FirstName, MEDIR_LONGITUD(FirstName)
+FROM
+    employees;
 
 # Crear una función concatenar que reciba dos cadenas y las devuelva concatenadas separadas por un guión bajo.
 # Por ejemplo, si se reciben ‘Juan’ y ‘Palomo’, devolvería ‘Juan_Palomo’. Usarla para imprimir el ID de empleado,
@@ -185,8 +193,8 @@ DELIMITER ;
 
 -- PROBANDO LA FUNCIÓN
 
-SELECT es_divisible(20, 2);
-SELECT es_divisible(0, 0);
+SELECT ES_DIVISIBLE(20, 2);
+SELECT ES_DIVISIBLE(0, 0);
 
 -- Crear un procedimiento que reciba un entero entre 1 y 12, y muestre por pantalla el mes del año. En caso de no ser el número de un mes,
 -- mostrar ‘Eres un poco despistado, introduce un mes’.
@@ -257,11 +265,12 @@ DELIMITER $$;
 DROP FUNCTION IF EXISTS func_isPair$$;
 CREATE FUNCTION func_isPair(num INT)
 RETURNS BOOLEAN
+DETERMINISTIC
 BEGIN
 	IF MOD(num,2) = 0 THEN
-		RETURN 1;
+		RETURN TRUE;
     ELSE
-		RETURN 0;
+		RETURN FALSE;
     END IF;
 END $$;
 DELIMITER ;
@@ -269,17 +278,87 @@ DELIMITER ;
 -- 2. Escribe una función que devuelva el valor de la hipotenusa de un triángulo a partir de los valores de sus lados.
 
 DELIMITER $$;
-DROP PROCEDURE IF EXISTS func_hipotenusear$$;
-CREATE PROCEDURE func_hipotenusear(IN lado1 FLOAT, IN lado2 FLOAT, IN lado3 FLOAT, OUT hipotenusa FLOAT);
+DROP FUNCTION IF EXISTS func_hipotenusa$$;
+CREATE FUNCTION func_hipotenusa(num1 FLOAT, num2 FLOAT)
+RETURNS FLOAT
+DETERMINISTIC
+BEGIN
+	RETURN sqrt((pow(num1,2))+(pow(num2,2)));
+END$$;
+DELIMITER ;
 
-
+SELECT func_hipotenusa(4, 3);
 
 -- 3. Escribe una función que reciba como parámetro de entrada un valor numérico que represente un día de la semana y que
 -- devuelva una cadena de caracteres con el nombre del día de la semana correspondiente. Por ejemplo, para el valor de
--- entrada 1 debería devolver la cadena lunes
+-- entrada 1 debería devolver la cadena lunes.
+
+DELIMITER $$;
+DROP FUNCTION IF EXISTS func_dia_semana$$;
+CREATE FUNCTION func_dia_semana(numero1 INT)
+RETURNS VARCHAR(30)
+DETERMINISTIC
+BEGIN
+	DECLARE mensaje VARCHAR(30);
+	 CASE numero1
+		WHEN 1 THEN
+			SET mensaje="Lunes";
+		WHEN 2 THEN
+			SET mensaje="Martes";
+		WHEN 3 THEN
+			SET mensaje="Miércoles";
+		WHEN 4 THEN
+			SET mensaje="Jueves";
+		WHEN 5 THEN
+			SET mensaje="Viernes";
+		WHEN 6 THEN
+			SET mensaje="Sábado";
+		WHEN 7 THEN
+			SET mensaje="Domingo";
+		ELSE
+        SET mensaje="No es un numero válido.";
+        END CASE;
+        RETURN mensaje;
+END$$;
+DELIMITER ;
+
 -- 4. Escribe una función que reciba tres números reales como parámetros de entrada y devuelva el mayor de los tres.
+
+DELIMITER $$;
+DROP FUNCTION IF EXISTS func_decir_mayor $$;
+CREATE FUNCTION func__decir_mayor(numero1 INT, numero2 INT, numero3 INT)
+	RETURNS INT
+DETERMINISTIC
+BEGIN
+	DECLARE mayor INT;
+    IF numero1 > numero2 AND numero1 > numero3 THEN
+		SET mayor = numero1;
+	ELSEIF numero2 > numero1 AND numero2 > numero3 THEN
+		SET mayor = numero2;
+	ELSE
+		SET mayor = numero3;
+	END IF;
+    RETURN mayor;
+END $$;
+DELIMITER ;
+
 -- 5. Escribe una función que devuelva el valor del área de un círculo a partir del valor del radio que se recibirá como
 -- parámetro de entrada.
+
+DELIMITER $$;
+CREATE FUNCTION func_area_circulo(radio FLOAT)
+	RETURNS FLOAT
+DETERMINISTIC
+BEGIN
+    DECLARE area FLOAT;
+    SET area = PI() * POW(radio, 2);
+    RETURN area;
+END;
+DELIMITER ;
+
+SELECT area_circulo(5); -- Devuelve el área del círculo con radio 5
+
+
 -- 6. Escribe una función que devuelva como salida el número de años que han transcurrido entre dos fechas que se reciben
 -- como parámetros de entrada. Por ejemplo, si pasamos como parámetros de entrada las fechas 2e18-e1-e1 y 2ee8-e1-e1
 -- la función tiene que devolver que han pasado 10 años.
