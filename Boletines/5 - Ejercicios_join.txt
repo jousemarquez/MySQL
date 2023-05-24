@@ -1,0 +1,43 @@
+1.Obtener todas las ordenes hechas por el empleado King Robert
+2.Obtener todas las ordenes hechas por el empleado King Robert, Davolio Nancy y Fuller Andrew
+3.Obtener todas las ordenes por el cliente cuya compania es "Que del?cia"
+4.Obtener todos los productos(codigo, nombre, precio, stock) de la orden 10257
+5.Obtener todos los productos(codigo, nombre, precio, stock) de las ordenes hechas desde 1997 hasta la fecha de hoy
+6.Mostar el ID del pedido, fecha del pedido y el total de productos de cada pedido
+7.Obtener el nombre de todas las categorias y los nombres de sus productos, precio y stock
+8.Obtener el número de productos, por cada categoría. Mostrando el nombre de la categoría, el nombre del producto, y el total de productos por categoría, solamente de las categorías 3, 5 y 8. Ordenar por el nombre de la categoría
+9.Visualizar el nombre de la categoria y el numero de productos que hay por cada categoria
+10. Por cada pedido, obtener el ID de pedido, ID de proveedor y el nombre de la compañía.
+11. Por cada pedido, obtener el ID de pedido, ID de empleado y el nombre de empleado.
+12. Por cada producto, obtener el ID de producto, ID de categoría y el nombre de categoría.
+13. Por cada empleado, imprimir el ID de empleado, nombre, apellido e ID de territorio.
+14. Por cada cliente, mostrar el ID de cliente, nombre de contacto y pedidos.
+15. Por cada cliente, mostrar el ID de cliente, nombre de contacto y numero total pedidos.
+16. Por cada pedido presente en orderdetails, imprimir toda su información y además, el nombre de la categoría
+a la que pertenece.
+17. Por cada pedido, mostrar el ID de pedido, dirección del cliente y dirección del empleado.
+18. Por cada producto, mostrar el ID de producto, nombre de producto y dirección del proveedor.
+19.Visualizar el nombre de la compañía y el id del cliente, fecha, precio unitario y producto de la orden
+20.Mostrar el nombre del producto, el precio, el stock y el nombre de la categoría a la que pertenece
+21.Mostrar el nombre del producto, el precio producto, el código del proveedor y el nombre de la compañía proveedora
+22.Mostrar el id de la orden, fecha, código del producto, precio, código del empleado y su nombre completo
+23.Calcular el stock de productos por cada categoria. Mostrar el nombre de la categoria y el stock por categoria
+24.Obtener el nombre del cliente, nombre del proveedor, nombre del empleado y el nombre de los productos que estan en la orden 10794
+25.Seleccionar el nombre de la compañía del cliente, el código de la orden de compra, la fecha de la orden de compra, código del producto, cantidad pedida del producto, nombre del producto, el nombre de la compañía proveedora y la ciudad del proveedor, usar Join
+26.Seleccionar cuantos proveedores tengo en cada país, considerando solo a los nombres de los proveedores que comienzan con la letra E hasta la letra P, además de mostrar solo los países donde tenga más de 2 proveedores
+27.Crear una consulta que muestre el nombre de empleado y el número de empleados que cada uno de los empleados tiene a su cargo
+SELECT JEFES.EmployeeID,count(*) FROM employees JEFES, employees EMPLEADOS WHERE EMPLEADOS.ReportsTo = JEFES.EmployeeID
+GROUP BY JEFES.EmployeeID;
+28.Crear una consulta que muestre el nombre de empleado, el número de pedidos tramitado por cada empleado, de aquellos empleados que han tramitado mas de 15 pedidos
+29.Crear una consulta que muestre el nombre del cliente, el número de pedidos que nos ha realizado el cliente, el dinero que nos ha dejado en la empresa, de todos los clientes que sean de USA y que nos han realizado mas de 5 pedidos
+30.Crear una consulta que muestre el nombre del jefe y el número de empleados a su cargo de aquel jefe que mas empleados tenga a su cargo
+31.Obtener el nombre del cliente y el número de pedidos del cliente que mas pedidos ha realizado en la empresa
+32.Obtener el nombre del cliente y el volumen de negocio del cliente 
+que mas volumen de negocio nos ha dejado en la empresa.
+
+MUY LARGOS, NO HACER
+33.Seleccionar el nombre de la compañía del cliente, nombre del contacto, el código de la orden de compra, la fecha de la orden decompra, el código del producto, cantidad pedida del producto, nombredel producto y el nombre de la compañía proveedora, usar JOIN. Solamente las compañías proveedoras que comienzan con laletra de la A hasta la letra G,además la cantidad pedida del productodebe estar entre 23 y 187
+34.Seleccionar el nombre de la compañía del cliente, el código de la orden de compra, la fecha de la orden de compra, código del producto, cantidad pedida del producto, nombre del producto, el nombre de la compañía proveedora y la ciudad del proveedor
+35.Seleccionar el nombre de la compañía del cliente, nombre del contacto, el código de la orden de compra, la fecha de la orden de compra, código del producto, cantidad pedida del producto, nombre del producto y el nombre de la compañía proveedora, usar Join. Solamente las compañías proveedoras que comienzan con la letra de la A hasta la letra G, además la cantidad pedida del producto debe estar entre 18 y 190
+
+
