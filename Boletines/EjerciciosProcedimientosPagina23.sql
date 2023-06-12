@@ -18,11 +18,10 @@ CALL proc_elevar_cuadrado(numero);
 -- Crear una rutina que reciba dos números, y eleve el primero al segundo (potencia). 
 
 DELIMITER $$;
-DROP PROCEDURE IF EXISTS proc_elevar_potencia$$;
-CREATE PROCEDURE proc_elevar_potencia(IN base INT, IN exponente INT, OUT resultado INT)
+DROP PROCEDURE IF EXISTS calcular_potencia$$;
+CREATE PROCEDURE calcular_potencia(IN base INT, IN exponente INT, OUT resultado INT)
 BEGIN
     SET resultado = POW(base, exponente);
-    SELECT resultado;
 END $$
 DELIMITER ;
 
@@ -44,9 +43,9 @@ END $$
 DELIMITER ;
 
 -- LANZANDO EL PROCEDIMIENTO
-SET @cadena = "Hola";
+SET @cadena1 = "Hola";
 SET @cadena2 = "Jouse";
-CALL proc_concatenar(cadena1, cadena2);
+CALL proc_concatenar_cadenas(cadena1, cadena2);
 
 -- Crear una rutina que reciba una cadena y le quite los espacios del principio y el final.
 

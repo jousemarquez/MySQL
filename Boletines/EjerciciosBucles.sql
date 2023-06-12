@@ -39,8 +39,34 @@ CALL proc_sumar_terminos(3);
 -- Cree una función que determine si un número es primo devolviendo 0 ó 1.
 
 DELIMITER $$;
-DROP FUNCTION IF EXISTS func_es_primo$$;
-CREATE FUNCTION func_es_primo(num INT)
+DROP FUNCTION IF EXISTS es_primo$$;
+CREATE FUNCTION es_primo(numero INT)
+RETURNS INT
+DETERMINISTIC
 BEGIN
+    DECLARE divisor INT;
+    DECLARE es_primo BOOLEAN;
+    
+    SET divisor = 2;
+    SET es_primo = TRUE;
+    
+    WHILE divisor < numero DO
+        IF numero % divisor = 0 THEN
+            SET es_primo = FALSE;
+            LEAVE;
+        END IF;
+        SET divisor = divisor + 1;
+    END WHILE;
+    IF es_primo THEN
+        RETURN 1;
+    ELSE
+        RETURN 0;
+    END IF;
+END $$;
+DELIMITER ;
+
+SELECT es_primo(13); -- Llamada a la función con el número 13
+
+
 
 -- Usando la función anterior, cree otra que calcule la suma de los primeros m números primos empezando en el 1.

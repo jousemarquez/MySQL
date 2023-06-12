@@ -87,6 +87,7 @@ SELECT proc_palindromear(@cadena2);
 -- BLOQUE 2
 -- FUNCIONES
 -- 1. Escribe una función que reciba un número entero de entrada y devuelva TRUE si el número es par o FALSE en caso contrario.
+
 -- 2. Escribe una función que devuelva el valor de la hipotenusa de un triángulo a partir de los valores de sus lados.
 -- 3. Escribe una función que reciba como parámetro de entrada un valor numérico que represente un día de la semana y que
 -- devuelva una cadena de caracteres con el nombre del día de la semana correspondiente. Por ejemplo, para el valor de

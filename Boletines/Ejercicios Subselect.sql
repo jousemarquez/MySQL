@@ -302,14 +302,30 @@ WHERE
         WHERE
             CategoryID LIKE 6);
 
--- 29: Productos cuya categoría empieza por la letra C o D. -- DUDA
-SELECT * from categories WHERE CategoryName LIKE "C%";
-
-SELECT * FROM Products AS pro GROUP BY CategoryID HAVING pro.CategoryID =
-(SELECT count(*) from categories WHERE CategoryName LIKE "C%") OR
-CategoryID = (SELECT count(*) from categories WHERE CategoryName LIKE "D%");
-
+-- 29: Productos cuya categoría empieza por la letra C o D.
+SELECT *
+FROM Products
+WHERE CategoryID IN (
+    SELECT CategoryID
+    FROM Categories
+    WHERE CategoryName LIKE 'C%' OR CategoryName LIKE 'D%'
+);
 
 -- 30: Ciudades que tienen menos clientes (customers) que la ciudad de Buenos Aires y Munich.
+SELECT City, COUNT(CustomerID) AS NumCustomers
+FROM Customers
+GROUP BY City
+HAVING City <> 'Buenos Aires' AND City <> 'Munich' AND COUNT(CustomerID) < (
+    SELECT COUNT(CustomerID)
+    FROM Customers
+    WHERE City = 'Buenos Aires' OR City = 'Munich'
+);
 
 -- 31: empleados que son más jóvenes que Margaret, Laura y Michael.
+SELECT *
+FROM Employees
+WHERE BirthDate > (
+    SELECT MAX(BirthDate)
+    FROM Employees
+    WHERE FirstName IN ('Margaret', 'Laura', 'Michael')
+);

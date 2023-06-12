@@ -358,11 +358,52 @@ DELIMITER ;
 
 SELECT area_circulo(5); -- Devuelve el área del círculo con radio 5
 
+-- Números primos
+
+DELIMITER $$;
+DROP FUNCTION IF EXISTS func_es_primo$$;
+CREATE FUNCTION func_es_primo(n INT)
+RETURNS BOOLEAN
+DETERMINISTIC
+BEGIN
+	DECLARE es_primo BOOLEAN DEFAULT TRUE;
+    DECLARE contador INT DEFAULT 2;
+    WHILE (contador < n && es_primo) DO
+		IF (MOD(n, contador)=0) THEN
+			SET es_primo = FALSE;
+        END IF;
+		SET contador = contador + 1;
+    END WHILE;
+	RETURN es_primo;
+END $$ ;
+DELIMITER ;
+
+SELECT func_es_primo(4);
+SELECT func_es_primo(11);
 
 -- 6. Escribe una función que devuelva como salida el número de años que han transcurrido entre dos fechas que se reciben
 -- como parámetros de entrada. Por ejemplo, si pasamos como parámetros de entrada las fechas 2e18-e1-e1 y 2ee8-e1-e1
 -- la función tiene que devolver que han pasado 10 años.
 -- Para realizar esta función puede hacer uso de las siguientes funciones que nos proporciona MySQL: DATEDIFF TRUNCATE
+
+DELIMITER $$;
+DROP FUNCTION IF EXISTS func_anos_entre_fechas$$;
+CREATE FUNCTION func_anos_entre_fechas(n INT)
+RETURNS BOOLEAN
+DETERMINISTIC
+BEGIN
+	DECLARE es_primo BOOLEAN DEFAULT TRUE;
+    DECLARE contador INT DEFAULT 2;
+    WHILE (contador < n && es_primo) DO
+		IF (MOD(n, contador)=0) THEN
+			SET es_primo = FALSE;
+        END IF;
+		SET contador = contador + 1;
+    END WHILE;
+	RETURN es_primo;
+END $$ ;
+DELIMITER ;
+
 -- 7. Escribe una función que reciba una cadena de entrada y devuelva la misma cadena pero sin acentos. La función tendrá
 -- que reemplazar todas las vocales que tengan acento por la misma vocal pero sin acento. Por ejemplo, si la función recibe
 -- como parámetro de entrada la cadena María la función debe devolver la cadena Maria.
@@ -388,3 +429,27 @@ SELECT area_circulo(5); -- Devuelve el área del círculo con radio 5
 -- 7. Escribe un procedimiento que reciba como parámetro de entrada un valor numérico que represente un día de la semana
 -- y que devuelva una cadena de caracteres con el nombre del día de la semana correspondiente. Por ejemplo, para el valor
 -- de entrada 1 debería devolver la cadena lunes.
+
+-- EJERCICIOS BUCLES
+
+-- Crea un programa que lea un número, e imprima en una misma línea tantos ceros como diga el número. Por ejemplo: si se lee el 3 debe imprimirse:
+-- 0 0 0
+
+DELIMITER $$;
+DROP FUNCTION IF EXISTS func_0$$;
+CREATE FUNCTION func_0(n INT)
+RETURNS INT
+DETERMINISTIC
+BEGIN
+    DECLARE contador INT DEFAULT 0;
+    WHILE (contador <= n ) DO
+		IF (MOD(n, contador)=0) THEN
+			SET es_primo = FALSE;
+        END IF;
+		SET contador = contador + 1;
+    END WHILE;
+	RETURN func_0;
+END $$ ;
+DELIMITER ;
+
+
